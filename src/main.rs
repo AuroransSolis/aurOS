@@ -2,6 +2,7 @@
 #![no_main]
 
 mod panic;
+mod vga;
 
 static HELLO: &[u8] = b"Hello World!";
 
