@@ -32,3 +32,4 @@ rustflags = ["-C", "link-args=-e __start -static -nostartfiles"]
 
 [dependencies]
 bootloader = "0.8.4"
+volatile = "0.2.6"

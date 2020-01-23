@@ -28,8 +28,8 @@ pub enum VgaColour {
 }
 
 impl VgaColour {
-    fn packed_fg_bg(fg: Self, bg: Self) -> u8 {
-        (fg.value() as u8) | ((bright_bg as u8) << 4)
+    pub fn packed_fg_bg(fg: Self, bg: Self) -> u8 {
+        (fg as u8) | ((bg as u8) << 4)
     }
 }
 
@@ -48,6 +48,6 @@ impl VgaChar {
     }
 
     pub fn pack(&self) -> u16 {
-        u16::from_le_bytes([self.cp437_char, self.colour_info])
+        u16::from_le_bytes([self.cp437_char, self.colour_code])
     }
 }
