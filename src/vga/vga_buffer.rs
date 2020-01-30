@@ -1,3 +1,4 @@
+use core::fmt;
 use super::vga_char::{VgaChar, VgaColour};
 use volatile::Volatile;
 
@@ -58,6 +59,12 @@ impl VgaWriter {
             self.column_position = 0;
             self.write_line();
         }
+    }
+}
+
+impl fmt::Write for VgaWriter {
+    fn write_str(&mut self, s: &str) -> fmt::Result {
+        Ok(self.write_string(s))
     }
 }
 
