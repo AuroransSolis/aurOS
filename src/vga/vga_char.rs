@@ -28,7 +28,7 @@ pub enum VgaColour {
 }
 
 impl VgaColour {
-    pub fn packed_fg_bg(fg: Self, bg: Self) -> u8 {
+    pub const fn packed_fg_bg(fg: Self, bg: Self) -> u8 {
         (fg as u8) | ((bg as u8) << 4)
     }
 }
@@ -51,3 +51,8 @@ impl VgaChar {
         u16::from_le_bytes([self.cp437_char, self.colour_code])
     }
 }
+
+pub const BLANK_CHAR: VgaChar = VgaChar {
+    cp437_char: b' ',
+    colour_code: 0b00000000,
+};
