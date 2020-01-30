@@ -64,7 +64,7 @@ impl VgaWriter {
 pub fn vga_test() {
     let mut writer = VgaWriter {
         column_position: 0,
-        colour_code: VgaColour::packed_fg_bg(VgaColour::White, VgaColour::Blue),
+        colour_code: VgaColour::packed_fg_bg(VgaColour::Red, VgaColour::White),
         buf: unsafe { &mut *(0xb8000 as *mut VgaBuffer) }
     };
     writer.write_string("Hello");
