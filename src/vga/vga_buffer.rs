@@ -53,10 +53,10 @@ impl VgaWriter {
     }
 
     pub fn advance_cursor(&mut self) {
+        self.column_position += 1;
         if self.column_position == BUFFER_WIDTH {
+            self.column_position = 0;
             self.write_line();
-        } else {
-            self.column_position += 1;
         }
     }
 }
