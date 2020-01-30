@@ -1,2 +1,2 @@
-mod vga_buffer;
-mod vga_char;
+pub mod vga_buffer;
+pub mod vga_char;
