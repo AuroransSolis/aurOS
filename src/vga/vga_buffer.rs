@@ -48,8 +48,8 @@ impl VgaWriter {
         self.column_position += 1;
     }
 
-    pub fn set_colour_code(&mut self, colour_code: u8) {
-        self.colour_code = colour_code;
+    pub fn set_colour_code(&mut self, fg: VgaColour, bg: VgaColour) {
+        self.colour_code = VgaColour::packed_fg_bg(fg, bg);
     }
 
     pub fn advance_cursor(&mut self) {
@@ -68,6 +68,6 @@ pub fn vga_test() {
         buf: unsafe { &mut *(0xb8000 as *mut VgaBuffer) }
     };
     writer.write_string("Hello");
-    writer.set_colour_code(VgaColour::packed_fg_bg(VgaColour::White, VgaColour::Red));
+    writer.set_colour_code(VgaColour::White, VgaColour::Red);
     writer.write_string(" world!");
 }
