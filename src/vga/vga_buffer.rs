@@ -94,7 +94,7 @@ unsafe impl Send for VgaWriter {}
 // Global VGA writer - `spin::Mutex` is used for synchronized interior mutability.
 pub static VGA_WRITER: spin::Mutex<VgaWriter> = spin::Mutex::new(VgaWriter {
     column_position: 0,
-    colour_code: VgaColour::packed_fg_bg(VgaColour::Red, VgaColour::White),
+    colour_code: VgaColour::packed_fg_bg(VgaColour::White, VgaColour::Black),
     buf: 0xb8000 as *mut VgaBuffer,
 });
 

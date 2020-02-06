@@ -15,6 +15,7 @@ use vga::{
 // returns `!` since this is called only by the bootloader/OS.
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
+    global_vga_fgbg(VgaColour::Red, VgaColour::White);
     print!("Hello ");
     global_vga_fgbg(VgaColour::White, VgaColour::Red);
     println!("world!");
