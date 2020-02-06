@@ -47,7 +47,7 @@ impl VgaWriter {
         for r in 1..BUFFER_HEIGHT {
             for c in 0..BUFFER_WIDTH {
                 let copy = unsafe { &*self.buf }.chars[r][c].read();
-                unsafe { &mut *self.buf }.chars[r - c][c].write(copy);
+                unsafe { &mut *self.buf }.chars[r - 1][c].write(copy);
             }
         }
         self.clear_row(BUFFER_HEIGHT - 1);
@@ -102,4 +102,18 @@ impl fmt::Write for VgaWriter {
     fn write_str(&mut self, s: &str) -> fmt::Result {
         Ok(self.write_string(s))
     }
+}
+
+// Convenience functions for setting (parts of) the global VGA writer colour code.
+
+pub fn global_vga_fgbg(fg: VgaColour, bg: VgaColour) {
+    VGA_WRITER.lock().set_fg_bg(fg, bg);
+}
+
+pub fn global_vga_fg(fg: VgaColour) {
+    VGA_WRITER.lock().set_fg(fg);
+}
+
+pub fn global_vga_bg(bg: VgaColour) {
+    VGA_WRITER.lock().set_bg(bg);
 }
