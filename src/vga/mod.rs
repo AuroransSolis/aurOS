@@ -1,5 +1,5 @@
 pub mod vga_buffer;
 pub mod vga_char;
 
-#[macro_export]
+#[macro_use]
 pub mod macros;

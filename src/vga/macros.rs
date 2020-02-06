@@ -13,7 +13,7 @@ macro_rules! print {
 #[macro_export]
 macro_rules! println {
     () => ($crate::print!("\n"));
-    ($($arg:tt)*) => ($crate::vga::macros::print!("{}\n", format_args!($($arg)*)));
+    ($($arg:tt)*) => (print!("{}\n", format_args!($($arg)*)));
 }
 
 // Just calls a provided method of `Write` on the VGA writer.
