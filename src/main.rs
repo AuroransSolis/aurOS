@@ -1,6 +1,5 @@
 #![no_std]
 #![no_main]
-#![feature(const_raw_ptr_deref, const_mut_refs)]
 
 #[macro_use]
 mod vga;
