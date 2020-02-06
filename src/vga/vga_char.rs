@@ -46,10 +46,6 @@ impl VgaChar {
             colour_code,
         }
     }
-
-    pub fn pack(&self) -> u16 {
-        u16::from_le_bytes([self.cp437_char, self.colour_code])
-    }
 }
 
 pub const BLANK_CHAR: VgaChar = VgaChar {
