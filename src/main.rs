@@ -2,8 +2,9 @@
 #![no_main]
 #![feature(const_raw_ptr_deref, const_mut_refs)]
 
-mod panic;
+#[macro_use]
 mod vga;
+mod panic;
 
 use vga::{vga_buffer::VGA_WRITER, vga_char::VgaColour};
 
