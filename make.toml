@@ -1,0 +1,16 @@
+[tasks.format]
+install_crate = "rustfmt"
+command = "cargo"
+args = ["fmt"]
+
+[tasks.kernel]
+install_crate = "cargo-xbuild"
+command = "cargo"
+args = ["xbuild", "--release", "--bin", "kernel", "--target", "x86_64-aurOS-none.json"]
+dependencies = ["format"]
+
+[tasks.os_loader]
+install_crate = "cargo-xbuild"
+command = "cargo"
+args = ["xbuild", "--release", "--bin", "os_loader", "--target", "x86_64-none-uefi"]
+dependencies = ["format"]
