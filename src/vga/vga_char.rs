@@ -6,6 +6,7 @@
 
 // VGA colours and their representation as a u8. Four bits would technically be enough, but a byte
 // is the smallest integer size in Rust.
+#[allow(dead_code)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 #[repr(u8)]
 pub enum VgaColour {
@@ -33,6 +34,7 @@ impl VgaColour {
     }
 }
 
+#[allow(dead_code)]
 #[derive(Copy, Clone)]
 pub struct VgaChar {
     cp437_char: u8,

@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 use super::vga_char::{VgaChar, VgaColour, BLANK_CHAR};
 use core::fmt;
 use volatile::Volatile;

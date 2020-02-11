@@ -15,7 +15,7 @@ mod panic;
 mod test_runner;
 
 use vga::{
-    vga_buffer::{global_vga_bg, global_vga_fgbg, VGA_WRITER},
+    vga_buffer::{global_vga_bg, global_vga_fgbg},
     vga_char::VgaColour,
 };
 
@@ -33,10 +33,8 @@ pub extern "C" fn _start() -> ! {
     // Run `test_main()` in the case that we're testing things.
     #[cfg(test)]
     test_main();
-    // Check panic handler
+    // Check panic handler, also returns `!` so I can lose the `loop` after it
     panic!("uh oh");
-    // Returns `!` so why not lmao
-    loop {}
 }
 
 #[test_case]
