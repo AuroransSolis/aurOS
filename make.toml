@@ -30,3 +30,6 @@ install_crate = "cargo-xbuild"
 command = "cargo"
 args = ["xtest", "--bin", "os_loader", "--target", "x86_64-none-uefi"]
 dependencies = ["format"]
+
+[tasks.test]
+dependencies = ["kernel_test", "os_loader_test"]
