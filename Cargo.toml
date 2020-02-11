@@ -1,43 +1,8 @@
-[package]
-name = "aurOS"
-version = "0.1.0"
-authors = ["Aurorans Solis <primalucegd@gmail.com>"]
-edition = "2018"
+[workspace]
+members = ["kernel", "os_loader"]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[[bin]]
-name = "kernel"
-path = "src/kernel.rs"
-
-[[bin]]
-name = "os_loader"
-path = "src/os_loader.rs"
-
-[profile.dev]
+[members.0.profile.dev]
 panic = "abort"
 
-[profile.release]
+[members.0.profile.release]
 panic = "abort"
-
-# Setting up these flags is apparently not the smartest idea, and more intelligent people have created a guide for
-# getting started with no_std Rust. However, I'm lazy, so I'm going to stick with this for now.
-
-# On Linux, we pass in `-nostartfiles` to the linker to prevent it from trying to use libc.
-[bin.0.target.'cfg(target_os = "linux")']
-rustflags = ["-C", "link-arg=-nostartfiles"]
-
-# On Windows, we have to tell the linker to look for a different entry point (`_start`), and since we're specifying a
-# different entry point, we have to specify which subsystem (CONSOLE or WINDOWS) we're using.
-[bin.0.target.'cfg(target_os = "windows")']
-rustflags = ["-C", "link-args=/ENTRY:_start /SUBSYSTEM:console"]
-
-# On MacOS, we have to also say that we're using a different entry point (`_start`). However, since MacOS appends `_` to
-# all functions, our entry point is now actually `__start`. We also have to tell it to build a static binary since it
-# requires that all programs link to libSystem by default, and also that we don't want to use crt0.
-[bin.0.target.'cfg(target_os = "macos")']
-rustflags = ["-C", "link-args=-e __start -static -nostartfiles"]
-
-[dependencies]
-volatile = "0.2.6"
-spin = "0.5.2"
