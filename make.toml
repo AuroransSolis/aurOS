@@ -14,3 +14,19 @@ install_crate = "cargo-xbuild"
 command = "cargo"
 args = ["xbuild", "--release", "--bin", "os_loader", "--target", "x86_64-none-uefi"]
 dependencies = ["format"]
+
+[tasks.build]
+dependencies = ["kernel", "os_loader"]
+# Add in stuff and things to build directory structure to run QEMU on
+
+[tasks.kernel_test]
+install_crate = "cargo-xbuild"
+command = "cargo"
+args = ["xtest", "--bin", "kernel", "--target", "x86_64-aurOS-none.json"]
+dependencies = ["format"]
+
+[tasks.os_loader_test]
+install_crate = "cargo-xbuild"
+command = "cargo"
+args = ["xtest", "--bin", "os_loader", "--target", "x86_64-none-uefi"]
+dependencies = ["format"]
