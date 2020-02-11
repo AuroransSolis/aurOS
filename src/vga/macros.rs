@@ -1,4 +1,4 @@
-use crate::VGA_WRITER;
+use super::vga_buffer::VGA_WRITER;
 use core::fmt::{self, Write};
 
 // Basically just a copy+paste of the std `print!` macro, but it calls the `_print` function
