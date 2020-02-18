@@ -6,11 +6,11 @@ args = ["fmt"]
 [tasks.build]
 install_crate = "cargo-xbuild"
 command = "cargo"
-args = ["xbuild", "--release", "--target", "x86_64-none-uefi"]
-dependencies = ["format"]
+args = ["xbuild", "--release", "--target", "x86_64-unknown-uefi"]
+# dependencies = ["format"]
 
 [tasks.test]
 install_crate = "cargo-xbuild"
 command = "cargo"
-args = ["xtest", "--target", "x86_64-none-uefi"]
-dependencies = ["format"]
+args = ["xtest", "--target", "x86_64-unknown-uefi"]
+# dependencies = ["format"]

@@ -7,13 +7,13 @@ args = ["fmt"]
 install_crate = "cargo-xbuild"
 command = "cargo"
 args = ["xbuild", "--release", "--target", "x86_64-aurOS-none.json"]
-dependencies = ["format"]
+# dependencies = ["format"]
 
 [tasks.os_loader]
 install_crate = "cargo-xbuild"
 command = "cargo"
 args = ["xbuild", "--release", "--target", "x86_64-none-uefi"]
-dependencies = ["format"]
+# dependencies = ["format"]
 
 [tasks.build]
 dependencies = ["kernel", "os_loader"]
@@ -29,7 +29,7 @@ dependencies = ["format"]
 install_crate = "cargo-xbuild"
 command = "cargo"
 args = ["xtest", "--target", "x86_64-none-uefi"]
-dependencies = ["format"]
+# dependencies = ["format"]
 
 [tasks.test]
 dependencies = ["kernel_test", "os_loader_test"]
