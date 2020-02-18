@@ -6,7 +6,7 @@ args = ["fmt"]
 [tasks.kernel]
 install_crate = "cargo-xbuild"
 command = "cargo"
-args = ["xbuild", "--release", "--target", "x86_64-aurOS-none.json"]
+args = ["xbuild", "--release", "--target", "kernel/x86_64-aurOS-none.json"]
 # dependencies = ["format"]
 
 [tasks.os_loader]
