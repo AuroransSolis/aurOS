@@ -22,7 +22,7 @@ dependencies = ["kernel", "os_loader"]
 [tasks.kernel_test]
 install_crate = "cargo-xbuild"
 command = "cargo"
-args = ["xtest", "--target", "x86_64-aurOS-none.json"]
+args = ["xtest", "--target", "kernel/x86_64-aurOS-none.json"]
 dependencies = ["format"]
 
 [tasks.os_loader_test]
