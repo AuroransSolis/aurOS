@@ -7,6 +7,7 @@
 
 mod panic;
 mod test_runner;
+mod types;
 
 #[no_mangle]
 pub extern "efiapi" fn efi_main(/* stuff */) /*->  stuff */ {
