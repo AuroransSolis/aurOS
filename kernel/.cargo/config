@@ -20,4 +20,4 @@ rustflags = ["-C", "link-args=/ENTRY:_start /SUBSYSTEM:console"]
 rustflags = ["-C", "link-args=-e __start -static -nostartfiles"]
 
 [target.'cfg(target_os = "none")']
-runner = "qemu-system-x86_64 -drive format=raw,file=target/x86_64-aurOS-none/release/kernel"
+runner = "echo Unable to run kernel on its own. Make sure to use the make command. Kernel executable path: "
