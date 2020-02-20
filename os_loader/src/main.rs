@@ -1,17 +1,17 @@
 #![no_std]
 #![no_main]
-#![feature(custom_test_frameworks)]
-#![test_runner(crate::test_runner::test_runner)]
-#![reexport_test_harness_main = "test_main"]
 #![feature(abi_efiapi)]
 
 mod panic;
 mod test_runner;
-mod types;
 
-#[no_mangle]
-pub extern "efiapi" fn efi_main(/* stuff */) /*->  stuff */ {
+use uefi::data_types::Handle;
+use uefi::Status;
+use uefi::table::{Boot, SystemTable};
+
+#[entry]
+fn efi_main(image: Handle, st: SystemTable<Boot>) -> Status {
     #[cfg(test)]
     test_main();
-    // more stuff
+    
 }
