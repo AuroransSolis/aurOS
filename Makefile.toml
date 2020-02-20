@@ -15,20 +15,34 @@ command = "cargo"
 args = ["xbuild", "--release", "--target", "x86_64-none-uefi"]
 dependencies = ["format"]
 
+[tasks.copy_uefi_binary_nix]
+dependencies = ["os_loader"]
+command = "cp"
+args = ["target/x86_64-unknown-uefi/os_loader.efi", "EFI/BOOT/BOOTX64.EFI"]
+
+[tasks.copy_uefi_binary_win]
+dependencies = ["os_loader"]
+command = "COPY"
+args = ["target/x86_64-unknown-uefi/os_loader.efi", "EFI/BOOT/BOOTX64.EFI"]
+
+[tasks.copy_uefi_binary]
+linux_alias = "copy_uefi_binary_nix"
+mac_alias = "copy_uefi_binary_nix"
+windows_alias = "copy_uefi_binary_win"
+
 [tasks.build]
-dependencies = ["kernel", "os_loader"]
-# Add in stuff and things to build directory structure to run QEMU on
+dependencies = ["kernel", "os_loader", "copy_uefi_binary"]
 
 [tasks.kernel_test]
 install_crate = "cargo-xbuild"
 command = "cargo"
-args = ["xtest", "--target", "kernel/x86_64-aurOS-none.json"]
+args = ["xtest", "--release", "--target", "kernel/x86_64-aurOS-none.json"]
 dependencies = ["format"]
 
 [tasks.os_loader_test]
 install_crate = "cargo-xbuild"
 command = "cargo"
-args = ["xtest", "--target", "x86_64-none-uefi"]
+args = ["xtest", "--release", "--bin", "os_loader", "--target", "x86_64-none-uefi"]
 dependencies = ["format"]
 
 [tasks.test]
